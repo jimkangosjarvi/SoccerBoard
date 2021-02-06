@@ -1,3 +1,3 @@
 # SoccerBoard
 
-Mae with Net5/Blazor Server Side
+Made with Net5/Blazor Server Side
