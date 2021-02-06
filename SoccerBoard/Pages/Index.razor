@@ -22,7 +22,7 @@ else
             </RadzenGridColumn>
             <RadzenGridColumn TItem="Game" Context="sampleBlazorModelsSampleOrder" Bubble="false" Filterable="false" Sortable="false" TextAlign="TextAlign.Center" Width="100px">
                 <Template Context="game">
-                    <RadzenButton Icon="edit" Size="ButtonSize.Small" Click="@(args => OpenDetails(game.Id))">
+                    <RadzenButton Text="Details" Size="ButtonSize.Small" Click="@(args => OpenDetails(game.Id))">
                     </RadzenButton>
                 </Template>
             </RadzenGridColumn>
