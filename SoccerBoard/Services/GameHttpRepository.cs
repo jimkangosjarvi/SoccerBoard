@@ -1,9 +1,9 @@
-﻿using Newtonsoft.Json;
-using SoccerBoard.Interfaces;
+﻿using SoccerBoard.Interfaces;
 using SoccerBoard.Models;
 using System;
 using System.Collections.Generic;
 using System.Net.Http;
+using System.Text.Json;
 using System.Threading.Tasks;
 
 namespace SoccerBoard.Services
@@ -28,7 +28,7 @@ namespace SoccerBoard.Services
                 var response = await client.GetAsync(reqUrl);
                 if (response.IsSuccessStatusCode)
                 {
-                    gameList = JsonConvert.DeserializeObject<List<Game>>(await response.Content.ReadAsStringAsync()); ;
+                    gameList = JsonSerializer.Deserialize<List<Game>>(await response.Content.ReadAsStringAsync()); ;
 
                 }
 
