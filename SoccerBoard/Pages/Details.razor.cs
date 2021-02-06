@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Components;
+using Microsoft.JSInterop;
 using SoccerBoard.Interfaces;
 using SoccerBoard.Models;
 using System.Collections.Generic;
@@ -9,6 +10,9 @@ namespace SoccerBoard.Pages
     public partial class Details
     {
         [Inject]
+        private IJSRuntime Jsr { set; get; }
+
+        [Inject]
         private IGameHttpRepository Ighr { set; get; }
 
         [Parameter]
@@ -18,6 +22,10 @@ namespace SoccerBoard.Pages
 
         private List<MatchEvent> matchevents;
 
+        private async void GoBack()
+        {
+            await Jsr.InvokeAsync<object>("GoBack.historyGo", -1);
+        }
         protected  async override void OnParametersSet()
         {
 
