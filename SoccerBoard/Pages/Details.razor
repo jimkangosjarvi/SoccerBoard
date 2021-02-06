@@ -1,0 +1,76 @@
+﻿@page "/Details/{Id}"
+@if (matchevents == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <div class="row" style="margin-bottom: 10px;">
+        <div class="col-lg-4 col-md-4 col-sm-6 container">
+            <RadzenCard Style="width:200px;height:200px;">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="container">
+                            Home Team:
+                        </div>
+                        <div class="container">
+                            <RadzenImage Path="@game.HomeTeam.LogoUrl" Style="width:100px;" />
+                            <br />
+                        </div>
+                        <div class="container">
+                            <b>@game.HomeTeam.Name</b>
+                        </div>
+
+                    </div>
+                </div>
+            </RadzenCard>
+        </div>
+        <div class="col-lg-4 col-md-4 col-sm-6">
+            <div class="container">
+                <h3>@game.MatchDate</h3>
+            </div>
+            <div class="container">
+                <h2>Score</h2>
+            </div>
+            <div class="container">
+                <h1>@game.HomeGoals - @game.AwayGoals</h1>
+            </div>
+
+        </div>
+        <div class="col-lg-4 col-md-4 col-sm-6 container">
+            <RadzenCard Style="width:200px;height:200px">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="container">
+                            Away Team:
+                        </div>
+                        <div class="container">
+                            <RadzenImage Path="@game.AwayTeam.LogoUrl" Style="width:100px;" />
+                            <br />
+                        </div>
+
+                        <div class="container">
+                            <b>@game.AwayTeam.Name</b>
+                        </div>
+                    </div>
+                </div>
+            </RadzenCard>
+        </div>
+    </div>
+
+
+    <RadzenGrid Count="@matchevents.Count" Data="@matchevents" AllowSorting="true" AllowFiltering="true" AllowPaging="true" PageSize="20" TItem="MatchEvent" ColumnWidth="200px">
+        <Columns>
+            <RadzenGridColumn TItem="MatchEvent" Property="EventMinute" Title="Minute" />
+            <RadzenGridColumn TItem="MatchEvent" Property="EventTypeIcon" Title="Event" Sortable="true" Filterable="false">
+                <Template Context="data">
+                    <RadzenImage Path="@data?.EventTypeIcon" />
+                </Template>
+            </RadzenGridColumn>
+            <RadzenGridColumn TItem="MatchEvent" Property="Description" Title="Description" />
+
+        </Columns>
+    </RadzenGrid>
+
+}
+
