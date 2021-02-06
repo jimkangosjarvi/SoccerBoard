@@ -2,6 +2,7 @@
 
 Made with Net5/Blazor Server Side
 <br>
+<br>
 <b>Functional Requirements</b>
 <br>
 The web app should include two web pages: One for showing a list of matches and one for showing details
