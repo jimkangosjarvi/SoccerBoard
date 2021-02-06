@@ -9,10 +9,4 @@
     <PackageReference Include="Radzen.Blazor" Version="3.0.7" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Content Update="wwwroot\Game.json">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-  </ItemGroup>
-
 </Project>
