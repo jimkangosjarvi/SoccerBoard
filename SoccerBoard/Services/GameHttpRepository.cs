@@ -31,13 +31,20 @@ namespace SoccerBoard.Services
                     gameList = JsonSerializer.Deserialize<List<Game>>(await response.Content.ReadAsStringAsync()); ;
 
                 }
-
+                if (gameList != null)
+                {
+                    gameList.Sort(new Comparison<Game>((x, y) => -DateTime.Compare(x.MatchDate ?? DateTime.MaxValue, y.MatchDate ?? DateTime.MaxValue)));
+                } else
+                {
+                    gameList = new List<Game>(); //Make a empty List
+                }
             }
             catch (Exception ex)
             {
-
+                
             }
-            gameList.Sort(new Comparison<Game>((x, y) => -DateTime.Compare(x.MatchDate ?? DateTime.MaxValue,y.MatchDate ?? DateTime.MaxValue)));
+            
+            
             return gameList;
         }
     }
