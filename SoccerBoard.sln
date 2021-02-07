@@ -5,7 +5,7 @@ VisualStudioVersion = 16.0.30907.101
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SoccerBoard", "SoccerBoard\SoccerBoard.csproj", "{1A6B2A28-5029-4CB1-8B9C-9F8892689653}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SoccerBoardXTest", "SoccerBoardXTest\SoccerBoardXTest.csproj", "{8CBA8434-815D-4B76-BC9D-03A66761695C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SoccerBoardXTest", "SoccerBoardXTest\SoccerBoardXTest.csproj", "{8CBA8434-815D-4B76-BC9D-03A66761695C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -1,0 +1,34 @@
+﻿@inject NavigationManager NavigationManager;
+
+<RadzenGrid Count="@games.Count" Data="@games" AllowSorting="true" AllowFiltering="true" AllowPaging="true" PageSize="20" TItem="Game" ColumnWidth="200px">
+    <Columns>
+        <RadzenGridColumn TItem="Game" Property="MatchDate" Title="Date" />
+        <RadzenGridColumn TItem="Game" Property="HomeTeam.Name" Title="Home Team" />
+        <RadzenGridColumn TItem="Game" Property="AwayTeam.Name" Title="Away Team" />
+        <RadzenGridColumn TItem="Game" Property="TheResult" Title="Result">
+
+            <Template Context="game">
+
+                <span style='color:black'>@game.HomeGoals - @game.AwayGoals</span>
+
+            </Template>
+        </RadzenGridColumn>
+        <RadzenGridColumn TItem="Game" Context="sampleBlazorModelsSampleOrder" Bubble="false" Filterable="false" Sortable="false" TextAlign="TextAlign.Center" Width="100px">
+            <Template Context="game">
+                <RadzenButton Text="Details" Size="ButtonSize.Small" Click="@(args => OpenDetails(game.Id))">
+                </RadzenButton>
+            </Template>
+        </RadzenGridColumn>
+    </Columns>
+</RadzenGrid>
+
+@code {
+
+    [Parameter]
+    public List<Game> games { set; get; }
+
+    void OpenDetails(int Id)
+    {
+        NavigationManager.NavigateTo($"/Details/{Id}");
+    }
+}
