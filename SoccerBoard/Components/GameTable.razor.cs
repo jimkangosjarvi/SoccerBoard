@@ -10,14 +10,14 @@ namespace SoccerBoard.Components
     public partial class GameTable
     {
         [Inject]
-        private IGameHttpRepository Ighr { set; get; }
+        private NavigationManager navigationManager { set; get; }
 
         [Parameter]
         public List<Game> games { set; get; }
 
         private void OpenDetails(int Id)
         {
-            NavigationManager.NavigateTo($"/Details/{Id}");
+            navigationManager.NavigateTo($"/Details/{Id}");
         }
     }
 }
