@@ -32,7 +32,7 @@ namespace SoccerBoard.Pages
             //InCase of reload page
             if (games == null) games = await Ighr.GetGames("");
 
-            game = games.FirstOrDefault(a => a.Id.ToString() == Id);
+            game = games.FirstOrDefault(a => a.Id.ToString().Equals(Id));
             
             StateHasChanged();
         }
