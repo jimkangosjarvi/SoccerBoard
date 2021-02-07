@@ -10,8 +10,13 @@ namespace SoccerBoard.Services
 {
     public class GameHttpRepository : IGameHttpRepository
     {
-        string reqUrl => $"https://functionapp2018071101324.blob.core.windows.net/data/matches_latest.json";
+        public event Action OnGameSelectedEvent;
+
+        private string reqUrl => $"https://functionapp2018071101324.blob.core.windows.net/data/matches_latest.json";
+        
         private List<Game> gameList;
+        private Game selectedgame;
+        
 
         public List<Game> CachedGames()
         {
@@ -23,7 +28,7 @@ namespace SoccerBoard.Services
 
             try
             {
-
+                SelectedGame = null;
                 HttpClient client = new HttpClient();
                 var response = await client.GetAsync(reqUrl);
                 if (response.IsSuccessStatusCode)
@@ -43,9 +48,20 @@ namespace SoccerBoard.Services
             {
                 
             }
-            
-            
+                  
             return gameList;
+        }
+
+        public Game SelectedGame
+        {
+            set {
+                selectedgame = value;
+                OnGameSelectedEvent?.Invoke();
+            }
+            get
+            {
+                return selectedgame;
+            }
         }
     }
 }

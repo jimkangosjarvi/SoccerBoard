@@ -32,8 +32,8 @@ namespace SoccerBoard.Pages
             //InCase of reload page
             if (games == null) games = await Ighr.GetGames("");
 
-            game = games.FirstOrDefault(a => a.Id.ToString().Equals(Id));
-            
+            if (games!=null) game = games.FirstOrDefault(a => a.Id.ToString().Equals(Id));
+            Ighr.SelectedGame = game;
             StateHasChanged();
         }
     }

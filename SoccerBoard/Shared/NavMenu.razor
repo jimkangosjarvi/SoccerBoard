@@ -1,5 +1,6 @@
-﻿<div class="top-row pl-4 navbar navbar-dark">
-    <a class="navbar-brand" href="">Soccer Board</a>
+﻿@inject IGameHttpRepository Ighr;
+<div class="top-row pl-4 navbar navbar-dark">
+    <a class="navbar-brand" href="">Soccer Board (@selectedGame?.Id)</a>
     <button class="navbar-toggler" @onclick="ToggleNavMenu">
         <span class="navbar-toggler-icon"></span>
     </button>
@@ -15,13 +16,27 @@
     </ul>
 </div>
 
-@code {
-    private bool collapseNavMenu = true;
 
+@code {
+
+    private bool collapseNavMenu = true;
+    private Game selectedGame;
     private string NavMenuCssClass => collapseNavMenu ? "collapse" : null;
+
+    protected override void OnInitialized()
+    {
+
+    //    this.Ighr.OnGameSelectedEvent -= this.OnGameSelectedEvent;
+        this.Ighr.OnGameSelectedEvent += this.OnGameSelectedEvent;
+    }
 
     private void ToggleNavMenu()
     {
         collapseNavMenu = !collapseNavMenu;
+    }
+    public void OnGameSelectedEvent()
+    {
+        selectedGame = this.Ighr.SelectedGame;
+        StateHasChanged();
     }
 }

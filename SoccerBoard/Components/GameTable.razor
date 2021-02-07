@@ -22,13 +22,3 @@
     </Columns>
 </RadzenGrid>
 
-@code {
-
-    [Parameter]
-    public List<Game> games { set; get; }
-
-    void OpenDetails(int Id)
-    {
-        NavigationManager.NavigateTo($"/Details/{Id}");
-    }
-}

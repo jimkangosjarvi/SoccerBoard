@@ -23,11 +23,6 @@ namespace SoccerBoard.Pages
             await RefreshCustomerList("");
         }
         
-        void OpenDetails(int Id)
-        {
-            NavigationManager.NavigateTo($"/Details/{Id}");
-        }
-        
         private async Task RefreshCustomerList(string teamname)
         {
             games= await Ighr.GetGames(teamname);
