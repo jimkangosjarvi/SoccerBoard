@@ -35,7 +35,8 @@ namespace SoccerBoard.Pages
             //We have a sort on teamname
             if (teamname.Length>0)
             {
-                games=games.Where(t => t.HomeTeam.Name.ToLower().Contains(teamname.ToLower()) || t.AwayTeam.Name.ToLower().Contains(teamname.ToLower())).ToList();
+                games=games.Where(t => t.HomeTeam.Name.ToLower().Contains(teamname.ToLower()) 
+                || t.AwayTeam.Name.ToLower().Contains(teamname.ToLower())).ToList();
             }
                 
             StateHasChanged();
