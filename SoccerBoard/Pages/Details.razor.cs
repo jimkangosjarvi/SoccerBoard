@@ -20,8 +20,6 @@ namespace SoccerBoard.Pages
         
         private Game game;
 
-        private List<MatchEvent> matchevents;
-
         private async void GoBack()
         {
             await Jsr.InvokeAsync<object>("GoBack.historyGo", -1);
@@ -35,8 +33,6 @@ namespace SoccerBoard.Pages
             if (games == null) games = await Ighr.GetGames("");
 
             game = games.FirstOrDefault(a => a.Id.ToString() == Id);
-            
-            if (game != null) matchevents = game.MatchEvents;
             
             StateHasChanged();
         }

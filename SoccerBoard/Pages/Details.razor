@@ -1,5 +1,5 @@
 ﻿@page "/Details/{Id}"
-@if (matchevents == null)
+@if (@game.MatchEvents == null)
 {
     <p><em>Loading...</em></p>
 }
@@ -59,8 +59,7 @@ else
             </div>
         </div>
 
-
-        <RadzenGrid Count="@matchevents.Count" Data="@matchevents" AllowSorting="true" AllowFiltering="true" AllowPaging="true" PageSize="20" TItem="MatchEvent" ColumnWidth="200px">
+        <RadzenGrid Count="@game.MatchEvents.Count" Data="@game.MatchEvents" AllowSorting="true" AllowFiltering="true" AllowPaging="true" PageSize="20" TItem="MatchEvent" ColumnWidth="200px">
             <Columns>
                 <RadzenGridColumn TItem="MatchEvent" Property="EventMinute" Title="Minute" />
                 <RadzenGridColumn TItem="MatchEvent" Property="EventTypeIcon" Title="Event" Sortable="true" Filterable="false">
