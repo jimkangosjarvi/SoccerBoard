@@ -10,7 +10,7 @@ namespace SoccerBoard.Pages
     public partial class Details
     {
         [Inject]
-        private IJSRuntime Jsr { set; get; }
+        private IJSRuntime Ijsr { set; get; }
         
         [Inject]
         private IGameHttpRepository Ighr { set; get; }
@@ -22,7 +22,7 @@ namespace SoccerBoard.Pages
 
         private async void GoBack()
         {
-            var module = await Jsr.InvokeAsync<IJSObjectReference>("import", "/js/GoBack.js");
+            var module = await Ijsr.InvokeAsync<IJSObjectReference>("import", "/js/GoBack.js");
             await module.InvokeAsync<object>("historyGo", -1);
         }
         protected  async override void OnParametersSet()
