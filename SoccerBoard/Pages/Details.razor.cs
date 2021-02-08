@@ -18,14 +18,14 @@ namespace SoccerBoard.Pages
         [Parameter]
         public string Id { get; set; }
         
-        private Game game;
+        private Game _game;
 
         private async void GoBack()
         {
             var module = await Ijsr.InvokeAsync<IJSObjectReference>("import", "/js/GoBack.js");
             await module.InvokeAsync<object>("historyGo", -1);
         }
-        protected  async override void OnParametersSet()
+        protected async override void OnParametersSet()
         {
 
             List<Game> games = Ighr.CachedGames();
@@ -33,8 +33,8 @@ namespace SoccerBoard.Pages
             //InCase of reload page
             if (games == null) games = await Ighr.GetGames("");
 
-            if (games!=null) game = games.FirstOrDefault(a => a.Id.ToString().Equals(Id));
-            Ighr.SelectedGame = game;
+            if (games!=null) _game = games.FirstOrDefault(a => a.Id.ToString().Equals(Id));
+            Ighr.SelectedGame = _game;
             StateHasChanged();
         }
     }

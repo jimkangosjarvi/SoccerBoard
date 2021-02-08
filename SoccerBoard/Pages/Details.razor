@@ -1,5 +1,5 @@
 ﻿@page "/Details/{Id}"
-@if (@game?.MatchEvents == null)
+@if (_game?.MatchEvents == null)
 {
     <p><em>Loading...</em></p>
 }
@@ -15,11 +15,11 @@ else
                                 Home Team:
                             </div>
                             <div class="container">
-                                <RadzenImage Path="@game.HomeTeam.LogoUrl" Style="width:100px;" />
+                                <RadzenImage Path="@_game.HomeTeam.LogoUrl" Style="width:100px;" />
                                 <br />
                             </div>
                             <div class="container">
-                                <b>@game.HomeTeam.Name</b>
+                                <b>@_game.HomeTeam.Name</b>
                             </div>
 
                         </div>
@@ -28,13 +28,13 @@ else
             </div>
             <div class="col-lg-4 col-md-4 col-sm-6">
                 <div class="container">
-                    <h3>@game.MatchDate</h3>
+                    <h3>@_game.MatchDate</h3>
                 </div>
                 <div class="container">
                     <h2>Score</h2>
                 </div>
                 <div class="container">
-                    <h1>@game.HomeGoals - @game.AwayGoals</h1>
+                    <h1>@_game.HomeGoals - @_game.AwayGoals</h1>
                 </div>
 
             </div>
@@ -46,12 +46,12 @@ else
                                 Away Team:
                             </div>
                             <div class="container">
-                                <RadzenImage Path="@game.AwayTeam.LogoUrl" Style="width:100px;" />
+                                <RadzenImage Path="@_game.AwayTeam.LogoUrl" Style="width:100px;" />
                                 <br />
                             </div>
 
                             <div class="container">
-                                <b>@game.AwayTeam.Name</b>
+                                <b>@_game.AwayTeam.Name</b>
                             </div>
                         </div>
                     </div>
@@ -59,7 +59,7 @@ else
             </div>
         </div>
 
-        <RadzenGrid Count="@game.MatchEvents.Count" Data="@game.MatchEvents" AllowSorting="true" AllowFiltering="true" AllowPaging="true" PageSize="20" TItem="MatchEvent" ColumnWidth="200px">
+        <RadzenGrid Count="@_game.MatchEvents.Count" Data="@_game.MatchEvents" AllowSorting="true" AllowFiltering="true" AllowPaging="true" PageSize="20" TItem="MatchEvent" ColumnWidth="200px">
             <Columns>
                 <RadzenGridColumn TItem="MatchEvent" Property="EventMinute" Title="Minute" />
                 <RadzenGridColumn TItem="MatchEvent" Property="EventTypeIcon" Title="Event" Sortable="true" Filterable="false">

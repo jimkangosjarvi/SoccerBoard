@@ -16,7 +16,7 @@ namespace SoccerBoard.Pages
         [Inject]
         private NavigationManager NavigationManager { set; get; }
 
-        private List<Game> games;
+        private List<Game> _games;
 
         protected override async Task OnInitializedAsync()
         {
@@ -25,12 +25,12 @@ namespace SoccerBoard.Pages
         
         private async Task RefreshCustomerList(string teamname)
         {
-            games= await Ighr.GetGames(teamname);
+            _games= await Ighr.GetGames(teamname);
 
             //We have a sort on teamname
             if (teamname.Length>0)
             {
-                games=games.Where(t => t.HomeTeam.Name.ToLower().Contains(teamname.ToLower()) 
+                _games=_games.Where(t => t.HomeTeam.Name.ToLower().Contains(teamname.ToLower()) 
                 || t.AwayTeam.Name.ToLower().Contains(teamname.ToLower())).ToList();
             }
                 

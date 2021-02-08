@@ -1,11 +1,11 @@
 ﻿@page "/"
 
-@if (games == null)
+@if (_games == null)
 {
     <p><em>Loading...</em></p>
 }
 else
 {
     <RadzenTextBox Placeholder="Write text and press enter..." Change=@(args => RefreshCustomerList(args)) />
-    <GameTable games="@games"/>
+    <GameTable games="@_games"/>
 }

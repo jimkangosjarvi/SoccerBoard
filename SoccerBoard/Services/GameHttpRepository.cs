@@ -12,15 +12,15 @@ namespace SoccerBoard.Services
     {
         public event Action OnGameSelectedEvent;
 
-        private string reqUrl => $"https://functionapp2018071101324.blob.core.windows.net/data/matches_latest.json";
+        private static string ReqUrl => $"https://functionapp2018071101324.blob.core.windows.net/data/matches_latest.json";
         
-        private List<Game> gameList;
-        private Game selectedgame;
+        private List<Game> _gameList;
+        private Game _selectedgame;
         
 
         public List<Game> CachedGames()
         {
-            return gameList;
+            return _gameList;
         }
 
         public async Task<List<Game>> GetGames(string teamname)
@@ -30,38 +30,34 @@ namespace SoccerBoard.Services
             {
                 SelectedGame = null;
                 HttpClient client = new HttpClient();
-                var response = await client.GetAsync(reqUrl);
+                var response = await client.GetAsync(ReqUrl);
                 if (response.IsSuccessStatusCode)
                 {
-                    gameList = JsonSerializer.Deserialize<List<Game>>(await response.Content.ReadAsStringAsync()); ;
-
+                    _gameList = JsonSerializer.Deserialize<List<Game>>(await response.Content.ReadAsStringAsync());
                 }
-                if (gameList != null)
+                if (_gameList != null)
                 {
-                    gameList.Sort(new Comparison<Game>((x, y) => -DateTime.Compare(x.MatchDate ?? DateTime.MaxValue, y.MatchDate ?? DateTime.MaxValue)));
+                    _gameList.Sort((x, y) => -DateTime.Compare(x.MatchDate ?? DateTime.MaxValue, y.MatchDate ?? DateTime.MaxValue));
                 } else
                 {
-                    gameList = new List<Game>(); //Make a empty List
+                    _gameList = new List<Game>(); //Make a empty List
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                
+                _gameList = new List<Game>(); //We dont tell user, that an error occured, just show a empty list for now
             }
                   
-            return gameList;
+            return _gameList;
         }
 
         public Game SelectedGame
         {
             set {
-                selectedgame = value;
+                _selectedgame = value;
                 OnGameSelectedEvent?.Invoke();
             }
-            get
-            {
-                return selectedgame;
-            }
+            get => _selectedgame;
         }
     }
 }
