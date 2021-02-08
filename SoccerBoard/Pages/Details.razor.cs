@@ -4,6 +4,7 @@ using SoccerBoard.Interfaces;
 using SoccerBoard.Models;
 using System.Collections.Generic;
 using System.Linq;
+using Microsoft.JSInterop.Implementation;
 
 namespace SoccerBoard.Pages
 {
@@ -11,10 +12,10 @@ namespace SoccerBoard.Pages
     {
         [Inject]
         private IJSRuntime Jsr { set; get; }
-
+        
         [Inject]
         private IGameHttpRepository Ighr { set; get; }
-
+        
         [Parameter]
         public string Id { get; set; }
         
@@ -22,7 +23,8 @@ namespace SoccerBoard.Pages
 
         private async void GoBack()
         {
-            await Jsr.InvokeAsync<object>("GoBack.historyGo", -1);
+            var module = await Jsr.InvokeAsync<IJSObjectReference>("import", "/js/GoBack.js");
+            await module.InvokeAsync<object>("historyGo", -1);
         }
         protected  async override void OnParametersSet()
         {
