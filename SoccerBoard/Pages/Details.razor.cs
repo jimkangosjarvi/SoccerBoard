@@ -4,7 +4,6 @@ using SoccerBoard.Interfaces;
 using SoccerBoard.Models;
 using System.Collections.Generic;
 using System.Linq;
-using Microsoft.JSInterop.Implementation;
 
 namespace SoccerBoard.Pages
 {
