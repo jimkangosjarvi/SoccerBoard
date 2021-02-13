@@ -28,7 +28,7 @@ namespace SoccerBoard.Pages
         protected async override void OnParametersSet()
         {
 
-            List<Game> games = Ighr.CachedGames();
+            IList<Game> games = Ighr.CachedGames();
             
             //InCase of reload page
             if (games == null) games = await Ighr.GetGames("");

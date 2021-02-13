@@ -15,9 +15,9 @@ namespace SoccerBoard.Components
         [Parameter]
         public List<Game> Games { set; get; }
 
-        private void OpenDetails(int Id)
+        private void OpenDetails(int id)
         {
-            NavigationManager.NavigateTo($"/Details/{Id}");
+            NavigationManager.NavigateTo($"/Details/{id}");
         }
     }
 }
